@@ -54,7 +54,6 @@ def getTestCase(problem_number):  # json 파일에 해당 문제 testcase들을 
     except Exception as err:
         print(f"{problem_number}은 테스트 케이스에 존재하지 않는 문제번호입니다.", err)
         return -1
-    print(problem_testcase)
     return problem_testcase
 
 
