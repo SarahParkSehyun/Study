@@ -6,6 +6,7 @@ import subprocess
 # testcase 저장 파일 경로
 testcaseFilePath = "./testcase/testcase.json"
 
+
 def run_test(file_path, i, sample_input, sample_output):
     try:
         # 파일 경로의 파이썬 파일을 subprocess로 open
@@ -34,7 +35,6 @@ def run_test(file_path, i, sample_input, sample_output):
         print("Error\n", err)
         return -1
 
-
     print(f"입력 예시: {sample_input}")
     print(f"출력 예시: {sample_output}\n출력 결과: {result}")
     if str(sample_output).rstrip() == result:
@@ -54,10 +54,11 @@ def getTestCase(problem_number):  # json 파일에 해당 문제 testcase들을 
     except Exception as err:
         print(f"{problem_number}은 테스트 케이스에 존재하지 않는 문제번호입니다.", err)
         return -1
+    print(problem_testcase)
     return problem_testcase
 
 
-def __main__():
+def main():
     # 문제 번호 및 이름 입력
     print("problem: ", end="")
     problem_number = sys.stdin.readline().rstrip()
@@ -71,9 +72,8 @@ def __main__():
     elif name == 'b' or name == 'bomi':
         name = 'Bomi'
     else:
-        print("등록되지 않은 이용자입니다.")
+        print("등록되지 않은 사용자입니다.")
         return
-
 
     # 파일 경로 설정
     file_path = f"{os.getcwd()}/{name}/problem/{problem_number}.py"
@@ -83,15 +83,15 @@ def __main__():
     if testcases == -1:
         return
 
-
     # 테스트 케이스를 성공적으로 가져왔을 경우
     print("-----------")
     print(f"문제 번호: {problem_number}")
     print("-----------")
     i = 1
-    for tc in testcases:
-        if run_test(file_path, i, tc['input'], tc['output']) == -1:
+    for key in testcases.keys():
+        if run_test(file_path, i, key, testcases[key]) == -1:
             return
         i += 1
 
-__main__()
+
+main()

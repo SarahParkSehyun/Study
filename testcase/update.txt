@@ -1,0 +1,9 @@
+problem 1000
+input1
+1 0 0
+
+output1
+3
+
+
+
