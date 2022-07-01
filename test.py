@@ -7,11 +7,12 @@ import subprocess
 testcaseFilePath = "./testcase/testcase.json"
 
 
-def run_test(file_path, i, sample_input, sample_output):
+def run_test(file_path,name, i, sample_input, sample_output):
+    pythonVersion = 'python3' if name == "Jeonhui" else 'python'
     try:
         # 파일 경로의 파이썬 파일을 subprocess로 open
         file = subprocess.Popen(
-            ['python3', file_path],
+            [pythonVersion, file_path],
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
@@ -78,7 +79,8 @@ def main():
         return
 
     # 파일 경로 설정
-    file_path = os.path.join(os.getcwd(), name, 'problem', problem_number + ".py")
+    file_path = os.path.join(os.getcwd(), name, 'problem', problem_number + ".py").rstrip()
+    print(file_path)
 
     # 테스트 케이스 가져오기
     testcases = getTestCase(problem_number)
