@@ -34,6 +34,7 @@ def updateFile():
         problem_number = title[1]
         answer = ""
         key = None
+        value = None
         if problem_number not in testcases.keys():
             testcases[problem_number] = {}
         for line in updateFile:
@@ -52,6 +53,8 @@ def updateFile():
                         testcases[problem_number][key] = value
                     key = None
                 answer = ""
+        if key is not None and (key != "" and value != ""):
+            testcases[problem_number][key] = value
         with open(testcaseFilePath, 'w') as f:
             json.dump(testcases, f, indent='\t')
 
