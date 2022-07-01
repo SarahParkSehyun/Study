@@ -60,8 +60,10 @@ def getTestCase(problem_number):  # json 파일에 해당 문제 testcase들을 
 def main():
     # 문제 번호 및 이름 입력
     print("problem: ", end="")
+    sys.stdout.flush() # 버퍼 내리기
     problem_number = sys.stdin.readline().rstrip()
     print("name: ", end="")
+    sys.stdout.flush()
     name = sys.stdin.readline().rstrip()
     name = name.lower()
     if name == 'j' or name == 'jeonhui':
