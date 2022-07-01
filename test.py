@@ -2,13 +2,14 @@ import sys
 import json
 import os
 import subprocess
+import platform
 
 # testcase 저장 파일 경로
 testcaseFilePath = "./testcase/testcase.json"
 
 
-def run_test(file_path, i,v, sample_input, sample_output):
-    pythonVersion ='python' if v else 'python3'
+def run_test(file_path, i, v, sample_input, sample_output):
+    pythonVersion = 'python' if v else 'python3'
     try:
         # 파일 경로의 파이썬 파일을 subprocess로 open
         file = subprocess.Popen(
@@ -69,16 +70,15 @@ def main():
     name = name.lower()
     if name == 'j' or name == 'jeonhui':
         name = 'Jeonhui'
-        pv = False
     elif name == 's' or name == 'sehyun':
         name = 'Sehyun'
-        pv = True
     elif name == 'b' or name == 'bomi':
         name = 'Bomi'
-        pv = True
     else:
         print("등록되지 않은 사용자입니다.")
         return
+
+    pv = False if platform.system() == 'Darwin' else True
 
     # 파일 경로 설정
     file_path = os.path.join(os.getcwd(), name, 'problem', problem_number + ".py")
@@ -94,7 +94,7 @@ def main():
     print("-----------")
     i = 1
     for key in testcases.keys():
-        if run_test(file_path, i,pv, key, testcases[key]) == -1:
+        if run_test(file_path, i, pv, key, testcases[key]) == -1:
             return
         i += 1
 
