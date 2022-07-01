@@ -60,7 +60,7 @@ def getTestCase(problem_number):  # json 파일에 해당 문제 testcase들을 
 def main():
     # 문제 번호 및 이름 입력
     print("problem: ", end="")
-    sys.stdout.flush() # 버퍼 내리기
+    sys.stdout.flush()  # 버퍼 내리기
     problem_number = sys.stdin.readline().rstrip()
     print("name: ", end="")
     sys.stdout.flush()
@@ -70,6 +70,7 @@ def main():
         name = 'Jeonhui'
     elif name == 's' or name == 'sehyun':
         name = 'Sehyun'
+
     elif name == 'b' or name == 'bomi':
         name = 'Bomi'
     else:
@@ -77,7 +78,7 @@ def main():
         return
 
     # 파일 경로 설정
-    file_path = f"{os.getcwd()}/{name}/problem/{problem_number}.py"
+    file_path = os.path.join(os.getcwd(), name, 'problem', problem_number + ".py")
 
     # 테스트 케이스 가져오기
     testcases = getTestCase(problem_number)
