@@ -13,7 +13,7 @@ def sequence(n):
                 cnt+=0
 
     return cnt
-
+#먕
 n=input()
 print(sequence(n))
 
